@@ -1,5 +1,5 @@
 package com.example.department_service.controller;
-import com.example.department_service.model.Department;
+import com.example.department_service.dto.DepartmentDTO;
 import com.example.department_service.service.DepartmentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -17,7 +17,7 @@ public class DepartmentController {
 
     @GetMapping("/")
     @ResponseStatus(HttpStatus.OK)
-    public List<Department> findAll() {
+    public List<DepartmentDTO> findAll() {
         return departmentService.findAll();
     }
 }
