@@ -13,4 +13,10 @@ public class DepartmentMapper {
                 .employees(department.getEmployees())
                 .build();
     }
+
+    public Department toDepartment(DepartmentDTO departmentDTO) {
+        return Department.builder()
+                .name(departmentDTO.getName())
+                .build();
+    }
 }

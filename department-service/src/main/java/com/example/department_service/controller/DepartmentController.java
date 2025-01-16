@@ -1,12 +1,11 @@
 package com.example.department_service.controller;
 import com.example.department_service.dto.DepartmentDTO;
 import com.example.department_service.service.DepartmentService;
+import jakarta.ws.rs.Path;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
@@ -19,5 +18,17 @@ public class DepartmentController {
     @ResponseStatus(HttpStatus.OK)
     public List<DepartmentDTO> findAll() {
         return departmentService.findAll();
+    }
+
+    @PostMapping("/")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void create(@RequestBody DepartmentDTO departmentDTO) {
+        departmentService.create(departmentDTO);
+    }
+
+    @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public DepartmentDTO getOne(@PathVariable("id") Long id) {
+        return departmentService.getOne(id);
     }
 }
