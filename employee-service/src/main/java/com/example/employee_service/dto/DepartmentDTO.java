@@ -1,17 +1,13 @@
-package com.example.department_service.model;
-import jakarta.persistence.*;
+package com.example.employee_service.dto;
 import lombok.*;
 
-@Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Department {
-    @Id
-    @GeneratedValue
+public class DepartmentDTO {
     private Long id;
     private String name;
     private String location;
-    
 }
+

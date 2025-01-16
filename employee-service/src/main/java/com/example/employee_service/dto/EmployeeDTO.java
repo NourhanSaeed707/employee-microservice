@@ -16,5 +16,5 @@ public class EmployeeDTO {
     private String email;
     private String address;
     private String mobile;
-    private Department department;
+    private DepartmentDTO department;
 }
