@@ -13,5 +13,5 @@ import java.util.List;
 public class DepartmentDTO {
     private Long id;
     private String name;
-    private List<Employee> employees;
+    private String location;
 }

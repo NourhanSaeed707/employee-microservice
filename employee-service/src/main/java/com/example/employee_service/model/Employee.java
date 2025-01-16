@@ -1,12 +1,6 @@
 package com.example.employee_service.model;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.*;
+import lombok.*;
 
 @Entity
 @AllArgsConstructor
@@ -22,6 +16,5 @@ public class Employee {
     private String email;
     private String address;
     private String mobile;
-    @ManyToOne
-    private Department department;
+    private Long departmentId;
 }

@@ -10,13 +10,14 @@ public class DepartmentMapper {
         return DepartmentDTO.builder()
                 .id(department.getId())
                 .name(department.getName())
-                .employees(department.getEmployees())
+                .location(department.getLocation())
                 .build();
     }
 
     public Department toDepartment(DepartmentDTO departmentDTO) {
         return Department.builder()
                 .name(departmentDTO.getName())
+                .location(departmentDTO.getLocation())
                 .build();
     }
 }
