@@ -31,4 +31,16 @@ public class DepartmentController {
     public DepartmentDTO getOne(@PathVariable("id") Long id) {
         return departmentService.getOne(id);
     }
+
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public DepartmentDTO update(@PathVariable("id") Long id, @RequestBody DepartmentDTO departmentDTO) {
+        return departmentService.update(id, departmentDTO);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void delete(@PathVariable("id") Long id) {
+        departmentService.delete(id);
+    }
 }

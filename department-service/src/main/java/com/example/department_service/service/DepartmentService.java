@@ -28,4 +28,18 @@ public class DepartmentService {
         Department department = departmentRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Department not found"));
         return mapper.toDepartmentDTO(department);
     }
+
+    public DepartmentDTO update(Long id, DepartmentDTO departmentDTO) {
+        Department department = departmentRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Department not found"));
+        department.setName(departmentDTO.getName());
+        departmentRepository.save(department);
+        return departmentDTO;
+    }
+
+    public void delete(Long id) {
+        Department department = departmentRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Department not found"));
+        if(department != null) {
+            departmentRepository.deleteById(id);
+        }
+    }
 }
