@@ -23,4 +23,16 @@ public class EmployeeMapper {
                 .department(depart)
                 .build();
     }
+
+    public Employee toEmployee(EmployeeDTO employeeDTO) {
+        var depart = departmentClient.getOne(employeeDTO.getDepartment().getId());
+        return Employee.builder()
+                .firstName(employeeDTO.getFirstName())
+                .lastName(employeeDTO.getLastName())
+                .email(employeeDTO.getEmail())
+                .address(employeeDTO.getAddress())
+                .mobile(employeeDTO.getMobile())
+                .departmentId(depart.getId())
+                .build();
+    }
 }
