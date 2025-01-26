@@ -44,4 +44,10 @@ public class EmployeeController {
     public void delete(@PathVariable("id") Long id) {
         employeeService.delete(id);
     }
+
+    @GetMapping("/department/{departmentId}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<EmployeeDTO> getEmployeesByDepartmentId(@PathVariable("departmentId") Long departmentId) {
+        return employeeService.getEmployeesByDepartmentId(departmentId);
+    }
 }

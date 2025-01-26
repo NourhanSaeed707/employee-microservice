@@ -1,4 +1,5 @@
 package com.example.employee_service.service;
+import com.example.employee_service.client.DepartmentClient;
 import com.example.employee_service.dto.EmployeeDTO;
 import com.example.employee_service.model.Employee;
 import com.example.employee_service.repository.EmployeeRepository;
@@ -31,7 +32,7 @@ public class EmployeeService {
         employeeFound.setLastName(employeeDTO.getLastName());
         employeeFound.setEmail(employeeDTO.getEmail());
         employeeFound.setMobile(employeeDTO.getMobile());
-        employeeFound.setDepartmentId(employeeDTO.getDepartmentId());
+        employeeFound.setDepartmentId(employeeDTO.getDepartment().getId());
         employeeRepository.save(employeeFound);
     }
 
@@ -45,5 +46,9 @@ public class EmployeeService {
         if(employee != null) {
             employeeRepository.deleteById(id);
         }
+    }
+
+    public List<EmployeeDTO> getEmployeesByDepartmentId(Long departmentId) {
+        return employeeRepository.findByDepartmentId(departmentId);
     }
 }
