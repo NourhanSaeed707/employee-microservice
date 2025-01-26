@@ -24,7 +24,7 @@ public class EmployeeService {
     }
 
     public void update(EmployeeDTO employeeDTO, Long id) {
-        
+        Employee employee = mapper.toEmployee(employeeDTO);
     }
 
     public EmployeeDTO getOne(Long id) {
