@@ -3,6 +3,7 @@ import com.example.employee_service.dto.EmployeeDTO;
 import com.example.employee_service.model.Employee;
 import com.example.employee_service.repository.EmployeeRepository;
 import com.example.employee_service.service.mapper.EmployeeMapper;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -24,12 +25,25 @@ public class EmployeeService {
     }
 
     public void update(EmployeeDTO employeeDTO, Long id) {
-        Employee employee = mapper.toEmployee(employeeDTO);
+        Employee employeeFound = employeeRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Employee not found with id " + id));
+        employeeFound.setAddress(employeeDTO.getAddress());
+        employeeFound.setFirstName(employeeDTO.getFirstName());
+        employeeFound.setLastName(employeeDTO.getLastName());
+        employeeFound.setEmail(employeeDTO.getEmail());
+        employeeFound.setMobile(employeeDTO.getMobile());
+        employeeFound.setDepartmentId(employeeDTO.getDepartmentId());
+        employeeRepository.save(employeeFound);
     }
 
     public EmployeeDTO getOne(Long id) {
+        Employee employee = employeeRepository.findById(id).orElseThrow(()-> new EntityNotFoundException("Employee not found with id " + id));
+        return mapper.toEmployeeDTO(employee);
     }
 
     public void delete(Long id) {
+        Employee employee = employeeRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Employee not found with id " + id));
+        if(employee != null) {
+            employeeRepository.deleteById(id);
+        }
     }
 }
